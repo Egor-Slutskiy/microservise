@@ -26,7 +26,7 @@ public class AuthorizationFilter implements GlobalFilter {
         final var auth = exchange.getRequest().getHeaders().get("Authorization");
 
 
-        if(auth != null && validator.isVerified(auth.get(0))){
+        if(auth != null && validator.isValid(auth.get(0))){
             final Payload payload = validator.getPayload();
 
             final var jsonPayload = payload.toJSONObject();

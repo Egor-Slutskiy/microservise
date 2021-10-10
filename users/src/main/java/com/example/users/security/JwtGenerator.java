@@ -18,7 +18,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Date;
 
 @Component
 public class JwtGenerator {
@@ -31,6 +34,8 @@ public class JwtGenerator {
             )));
 
             final var claims = new JWTClaimsSet.Builder()
+                    .expirationTime(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
+                    .issueTime(new Date())
                     .claim("id", user.getId())
                     .build();
 
