@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = CardNumberValidator.class)
 public @interface CardNumber {
-    String message() default "{IpAddress.invalid}";
+    String message() default "{cardNumber.invalid}";
 
     Class<?>[] groups() default { };
 

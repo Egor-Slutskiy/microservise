@@ -21,11 +21,11 @@ public class PaymentService {
     private final Log logger = LogFactory.getLog(this.getClass());
     private final KafkaTemplate<String, Payment> template;
 
-    public PaymentResponseDto proceedPayment(PaymentRequestDto payment) {
+    public PaymentResponseDto proceedPayment(PaymentRequestDto payment, long senderId) {
         final ListenableFuture<SendResult<String, Payment>> future = template.send(
                 new ProducerRecord<>("payments", "ibank", new Payment(
                         System.currentTimeMillis(),
-                        payment.getSenderId(),
+                        senderId,
                         payment.getCardNumber(),
                         payment.getAmount(),
                         payment.getComment()

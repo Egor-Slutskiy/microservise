@@ -16,8 +16,6 @@ import javax.validation.constraints.Size;
 public class PaymentRequestDto {
 
     @NotNull
-    private long senderId;
-    @NotNull
     @Min(1)
     private long amount;
     @NotNull

@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  application:
+    name: producer
+  kafka:
+    bootstrap-servers: localhost:9991,localhost:9992,localhost:9993
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 3
+      properties:
+        spring:
+          json:
+            add:
+              type:
+                headers: false
+server:
+  port: 0

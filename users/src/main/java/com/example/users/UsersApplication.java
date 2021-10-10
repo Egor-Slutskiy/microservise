@@ -1,14 +1,18 @@
 package com.example.users;
 
+import com.example.users.dto.JwtResponseDto;
 import com.example.users.dto.UserResponseDto;
 import com.example.users.entity.UserEntity;
 import com.example.users.repository.UserRepository;
+import com.example.users.security.JwtGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -18,6 +22,7 @@ import java.util.Optional;
 public class UsersApplication {
 
     private final UserRepository repository;
+    private final JwtGenerator jwtGenerator;
 
     @GetMapping
     public UserResponseDto endpoint(@RequestHeader Optional<String> authorization) {
@@ -35,8 +40,10 @@ public class UsersApplication {
     }
 
     @PostMapping("/api/user")
-    public void saveUser(@RequestBody UserResponseDto user){
-        repository.save(new UserEntity(user.getId(), user.getUsername()));
+    public JwtResponseDto saveUser(@RequestBody UserResponseDto user){
+        final var userEntity = new UserEntity(user.getId(), user.getUsername());
+        repository.save(userEntity);
+        return new JwtResponseDto(jwtGenerator.generate(userEntity));
     }
 
 }

@@ -15,18 +15,18 @@ Authorization: top-secret
 GET http://localhost:9002/api/payments
 ###
 
-POST http://localhost:65253/producer/api/payments
+POST http://localhost:9000/producer/api/payments
+Authorization: eyJhbGciOiJSUzI1NiJ9.eyJpZCI6Mn0.BTXZNpdc0IOmFnUCOS-ER6O57FX2yrdwHEW5-UqW6Ab2mKjd86cuQIhJKNgOrB3nXrfX2rs3ErMcqN-UlU3R1rYJ-xSX_rgdSGqe41DzlLOXox4HsjVdrbwZ4iI_HjU80z4ybhANglcSGZyY83GNOFbpT744GxLL5EFVxqVJUrMNR0ahs5dMER0vNKEcIoxX3tv4obvNQSIpxvh6egd-el5ROzMKrFuUHU0BabfzrOsHJwl1GTkkGoB6-VD3TiuWzQmJTDeTvm2YFEo_fLuT5pxJI4snHAl4psQEY-23FbLd6I8L5jeODYtvu3gIKms3vc2irHPFBi8Nd7G9NdsfMg
 Content-Type: application/json
 
 {
-  "senderId": 2,
   "amount": 10000,
-  "cardNumber": 123123123,
+  "cardNumber": 5212223222337122,
   "comment": "asd"
 }
 
 ###
-POST http://localhost:65345/api/user
+POST http://localhost:53305/api/user
 Content-Type: application/json
 
 {
