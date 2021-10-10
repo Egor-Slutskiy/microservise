@@ -1,0 +1,35 @@
+### Without Gateway
+
+http://localhost:9002/value
+
+### With Gateway
+
+http://localhost:9000/aggregator/value
+
+### With Token & Gateway
+
+http://localhost:9000/aggregator/api/payments
+Authorization: top-secret
+
+###
+GET http://localhost:9002/api/payments
+###
+
+POST http://localhost:65253/producer/api/payments
+Content-Type: application/json
+
+{
+  "senderId": 2,
+  "amount": 10000,
+  "cardNumber": 123123123,
+  "comment": "asd"
+}
+
+###
+POST http://localhost:65345/api/user
+Content-Type: application/json
+
+{
+  "id": 2,
+  "username": "dima"
+}

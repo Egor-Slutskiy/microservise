@@ -1,0 +1,16 @@
+app.id: ${random.uuid}
+spring:
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  application:
+    name: users
+  datasource:
+    url: ${JDBC_URL:jdbc:postgresql://localhost:5430/users?user=users&password=pass}
+  jpa:
+    generate-ddl: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+server:
+  port: 0
