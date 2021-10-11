@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,9 +27,9 @@ public class AggregatorApplication {
   private final UsersClient usersClient;
 
   @GetMapping("/api/payments")
-  public List<UserWithPaymentsDto> value() {
-    final var payments = dataClient.getValue();
-    final var user = usersClient.getValue();
+  public List<UserWithPaymentsDto> value(@RequestHeader("Authn") long id) {
+    final var payments = dataClient.getValue(id);
+    final var user = usersClient.getValue(id);
     return List.of(new UserWithPaymentsDto(user,payments));
   }
 

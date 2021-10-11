@@ -9,24 +9,24 @@ http://localhost:9000/aggregator/value
 ### With Token & Gateway
 
 http://localhost:9000/aggregator/api/payments
-Authorization: top-secret
+Authorization: eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjMzOTEyODUwLCJpYXQiOjE2MzM5MDkyNTB9.UvawIltNjgpbuHCnS76dNr-j3RPHlzFoNcYqY8XMxa4fh9vpJ9bh8hKbiDS4pHI1WrUlc4wS6vMqY75Y7T3TM_uO0n8IUFW-wrW8lNePJltEOEHP7H1LLhd-T8SjkSv_-tmg0VAfAAuF6k63QZ9KynHMflK2Ka4w825SXneQj_6kTYXJHS7ljp6Ge41mBb_f5SrFQvl6rHNVZgBDCLgLWKaRC_WBSI0LPr0SNFNzoWqklHxfAS193YEJVehcD5WC_IFAWBIpwMUN6pi-rq2Oci847zpJGbUohE-9lGQh1orsszASgjPU5XKJZ76t8ESoyfPFSmlYZk1XvdTRDMGoEg
 
 ###
 GET http://localhost:9002/api/payments
 ###
 
 POST http://localhost:9000/producer/api/payments
-Authorization: eyJhbGciOiJSUzI1NiJ9.eyJpZCI6Mn0.BTXZNpdc0IOmFnUCOS-ER6O57FX2yrdwHEW5-UqW6Ab2mKjd86cuQIhJKNgOrB3nXrfX2rs3ErMcqN-UlU3R1rYJ-xSX_rgdSGqe41DzlLOXox4HsjVdrbwZ4iI_HjU80z4ybhANglcSGZyY83GNOFbpT744GxLL5EFVxqVJUrMNR0ahs5dMER0vNKEcIoxX3tv4obvNQSIpxvh6egd-el5ROzMKrFuUHU0BabfzrOsHJwl1GTkkGoB6-VD3TiuWzQmJTDeTvm2YFEo_fLuT5pxJI4snHAl4psQEY-23FbLd6I8L5jeODYtvu3gIKms3vc2irHPFBi8Nd7G9NdsfMg
+Authorization: eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjMzOTEyODUwLCJpYXQiOjE2MzM5MDkyNTB9.UvawIltNjgpbuHCnS76dNr-j3RPHlzFoNcYqY8XMxa4fh9vpJ9bh8hKbiDS4pHI1WrUlc4wS6vMqY75Y7T3TM_uO0n8IUFW-wrW8lNePJltEOEHP7H1LLhd-T8SjkSv_-tmg0VAfAAuF6k63QZ9KynHMflK2Ka4w825SXneQj_6kTYXJHS7ljp6Ge41mBb_f5SrFQvl6rHNVZgBDCLgLWKaRC_WBSI0LPr0SNFNzoWqklHxfAS193YEJVehcD5WC_IFAWBIpwMUN6pi-rq2Oci847zpJGbUohE-9lGQh1orsszASgjPU5XKJZ76t8ESoyfPFSmlYZk1XvdTRDMGoEg
 Content-Type: application/json
 
 {
-  "amount": 10000,
+  "amount": 765,
   "cardNumber": 5212223222337122,
   "comment": "asd"
 }
 
 ###
-POST http://localhost:53305/api/user
+POST http://localhost:54849/api/user
 Content-Type: application/json
 
 {

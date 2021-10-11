@@ -32,10 +32,8 @@ public class DataApplication {
   private String id;
 
   @GetMapping
-  public List<ResponseDto> endpoint(@RequestHeader Optional<String> authorization) {
-    logger.info("request");
-//    throw new RuntimeException();
-    final var payments = repository.findBySenderId(2);
+  public List<ResponseDto> endpoint(@RequestHeader("Authn") long id) {
+    final var payments = repository.findBySenderId(id);
     List<ResponseDto> paymentsList= new ArrayList<>();
     if(!payments.isEmpty()){
       for(PaymentEntity payment:payments){

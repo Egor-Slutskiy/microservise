@@ -25,9 +25,8 @@ public class UsersApplication {
     private final JwtGenerator jwtGenerator;
 
     @GetMapping
-    public UserResponseDto endpoint(@RequestHeader Optional<String> authorization) {
-        // TODO: userId
-        final Optional<UserEntity> user = repository.findById(2L);
+    public UserResponseDto endpoint(@RequestHeader("Authn") long id) {
+        final Optional<UserEntity> user = repository.findById(id);
         if(user.isPresent()){
             final var userEntity = user.get();
             return new UserResponseDto(userEntity.getId(), userEntity.getUsername());

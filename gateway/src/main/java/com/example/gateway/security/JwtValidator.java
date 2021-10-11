@@ -30,8 +30,8 @@ public class JwtValidator {
             final var deserialized = SignedJWT.parse(jwt);
             this.payload = deserialized.getPayload();
             final var verifier = new RSASSAVerifier(publicKey);
-            final Instant expTime = (Instant) payload.toJSONObject().get("exp");
-            if(expTime.isAfter(Instant.now())){
+            final long expTime = (Long) payload.toJSONObject().get("exp");
+            if(expTime > Instant.now().getEpochSecond()){
                 return deserialized.verify(verifier);
             }
             throw new RuntimeException("invalid jwt");
