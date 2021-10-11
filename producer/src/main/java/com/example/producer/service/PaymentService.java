@@ -21,27 +21,30 @@ public class PaymentService {
     private final Log logger = LogFactory.getLog(this.getClass());
     private final KafkaTemplate<String, Payment> template;
 
-    public PaymentResponseDto proceedPayment(PaymentRequestDto payment, long senderId) {
-        final ListenableFuture<SendResult<String, Payment>> future = template.send(
-                new ProducerRecord<>("payments", "ibank", new Payment(
-                        System.currentTimeMillis(),
-                        senderId,
-                        payment.getCardNumber(),
-                        payment.getAmount(),
-                        payment.getComment()
-                ))
-        );
-        future.addCallback(new ListenableFutureCallback<>() {
-            @Override
-            public void onFailure(@NonNull Throwable e) {
-                e.printStackTrace();
-            }
+    public PaymentResponseDto proceedPayment(PaymentRequestDto payment, long senderId, String role) {
+        if(role.equals("ROLE_USER")){
+            final ListenableFuture<SendResult<String, Payment>> future = template.send(
+                    new ProducerRecord<>("payments", "ibank", new Payment(
+                            System.currentTimeMillis(),
+                            senderId,
+                            payment.getCardNumber(),
+                            payment.getAmount(),
+                            payment.getComment()
+                    ))
+            );
+            future.addCallback(new ListenableFutureCallback<>() {
+                @Override
+                public void onFailure(@NonNull Throwable e) {
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onSuccess(SendResult<String, Payment> result) {
-                logger.info(result);
-            }
-        });
-        return new PaymentResponseDto("OK", "Платеж отправлен на обработку типа");
+                @Override
+                public void onSuccess(SendResult<String, Payment> result) {
+                    logger.info(result);
+                }
+            });
+            return new PaymentResponseDto("OK", "Платеж отправлен на обработку типа");
+        }
+        return new PaymentResponseDto("ERROR", "Нет прав доступа для данной операции");
     }
 }

@@ -37,6 +37,7 @@ public class JwtGenerator {
                     .expirationTime(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
                     .issueTime(new Date())
                     .claim("id", user.getId())
+                    .claim("role", user.getRole())
                     .build();
 
             final var signer = new RSASSASigner(privateKey);

@@ -11,4 +11,7 @@ import java.util.List;
 public interface DataClient {
   @GetMapping
   List<PaymentResponseDto> getValue(@RequestHeader("Authn") long id);
+
+  @GetMapping("/admin")
+  List<PaymentResponseDto> getAll();
 }

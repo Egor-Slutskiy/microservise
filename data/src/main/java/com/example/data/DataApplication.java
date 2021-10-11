@@ -34,16 +34,26 @@ public class DataApplication {
   @GetMapping
   public List<ResponseDto> endpoint(@RequestHeader("Authn") long id) {
     final var payments = repository.findBySenderId(id);
+    return getResponseDtos(payments);
+  }
+
+  @GetMapping("/admin")
+  public List<ResponseDto> getAll(){
+    final var payments = repository.findAll();
+    return getResponseDtos(payments);
+  }
+
+  private List<ResponseDto> getResponseDtos(List<PaymentEntity> payments) {
     List<ResponseDto> paymentsList= new ArrayList<>();
     if(!payments.isEmpty()){
       for(PaymentEntity payment:payments){
-         paymentsList.add(new ResponseDto(
-                 payment.getId(),
-                 payment.getAmount(),
-                 payment.getCardId(),
-                 payment.getComment(),
-                 payment.getSenderId()
-         ));
+        paymentsList.add(new ResponseDto(
+                payment.getId(),
+                payment.getAmount(),
+                payment.getCardId(),
+                payment.getComment(),
+                payment.getSenderId()
+        ));
       }
     }
     return paymentsList;

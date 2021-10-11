@@ -33,6 +33,7 @@ public class AuthorizationFilter implements GlobalFilter {
 
             final var request = exchange.getRequest().mutate()
                     .header("Authn", jsonPayload.get("id").toString())
+                    .header("X-Role", jsonPayload.get("role").toString())
                     .build();
             final ServerWebExchange modified = exchange.mutate().request(request).build();
             return chain.filter(modified);

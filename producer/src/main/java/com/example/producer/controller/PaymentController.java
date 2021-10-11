@@ -17,7 +17,9 @@ public class PaymentController {
     private final PaymentService service;
 
     @PostMapping("/payments")
-    public PaymentResponseDto payment(@RequestBody @Valid PaymentRequestDto payment, @RequestHeader("Authn") long id){
-        return service.proceedPayment(payment, id);
+    public PaymentResponseDto payment(@RequestBody @Valid PaymentRequestDto payment,
+                                      @RequestHeader("Authn") long id,
+                                      @RequestHeader("X-Role") String role){
+        return service.proceedPayment(payment, id, role);
     }
 }
