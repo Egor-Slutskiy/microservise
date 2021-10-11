@@ -1,4 +1,3 @@
-app.id: ${random.uuid}
 spring:
   cloud:
     zookeeper:
